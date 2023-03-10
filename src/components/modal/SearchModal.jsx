@@ -15,7 +15,7 @@ const customStyles = {
 };
 Modal.setAppElement("#root");
 
-function SearchModal() {
+function SearchModal({ address }) {
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -37,7 +37,7 @@ function SearchModal() {
       <div className={`flex-row gap-2`}>
         <button className="text-[24px] font-bold text-teal flex flex-row gap-2 items-center justify-center">
           <Icon icon="material-symbols:location-on" />{" "}
-          <span className="text-[16px]">Pandi</span>
+          <span className="text-[16px]">{address?.municipal_city}</span>
         </button>
       </div>
       <input
@@ -45,7 +45,9 @@ function SearchModal() {
         type="text"
         placeholder="Find water refilling station."
         className={` ${
-          modalIsOpen ? "absolute top-3 left-0 w-full z-50 flex" : "relative hidden"
+          modalIsOpen
+            ? "absolute top-3 left-0 w-full z-50 flex "
+            : "relative hidden"
         }  w-full sm:flex border-[1px] px-5 text-[16px] text-teal border-dim-blue rounded-full h-[45px] focus:outline-none focus:border-[1px]`}
       />
 
@@ -86,29 +88,6 @@ function SearchModal() {
         </div>
       </Modal>
     </div>
-    // <div
-    //   onClick={openModal}
-    //   className="text-[24px] sm:text-[32px] flex flex-grow gap-2 items-center hover:text-aqua-marine hover:cursor-pointer"
-    // >
-    //   <div>
-    //     <input
-    //       type="text"
-    //       placeholder="Find water refilling station."
-    //       className="hidden w-full sm:flex border-[1px] px-5 text-[16px] text-teal border-dim-blue rounded-full h-[45px] focus:outline-none focus:border-[1px]"
-    //     />
-    //     <Icon icon="ic:baseline-search" />
-    //   </div>
-
-    //   <Modal
-    //     isOpen={modalIsOpen}
-    //     onAfterOpen={afterOpenModal}
-    //     onRequestClose={closeModal}
-    //     style={customStyles}
-    //     contentLabel="Example Modal"
-    //   >
-    //     <button onClick={closeModal}>close</button>
-    //   </Modal>
-    // </div>
   );
 }
 
