@@ -12,12 +12,13 @@ import DraggableMarker from "./DraggableMarker";
 import FixedMarker from "./FixedMarker";
 import axiosAPI from "../../../services/api.axios";
 import { useAuth } from "../../../hooks/auth";
+import UpdateAddess from "../UpdateAddess";
 
 function NearbyWRSMap({ station, setStation }) {
   const { profile } = useAuth();
   const address = profile?.data?.data.address;
-  const complete_address = `${address.municipal_city} ${
-    address.province || ""
+  const complete_address = `${address?.municipal_city} ${
+    address?.province || ""
   } Philippines`;
   console.log("complete_address", complete_address);
 
@@ -81,7 +82,7 @@ function NearbyWRSMap({ station, setStation }) {
   console.log("position", position);
   return position ? (
     <MapContainer
-      style={{ width: "100%", height: "400px" }}
+      style={{ width: "100%", height: "100%" }}
       center={position}
       zoom={14}
       scrollWheelZoom={true}
@@ -104,16 +105,22 @@ function NearbyWRSMap({ station, setStation }) {
       ))}
     </MapContainer>
   ) : (
-    <div className="h-full w-full flex flex-col items-center justify-center gap-1">
-      <p className="font-bold">Getting your location...</p>
+    <div className="h-screen w-full flex flex-col items-center justify-center gap-1">
+      <p className="font-bold text-[24px]">Getting your location...</p>
       <p>
         If a prompt appears asking to allow your location on the browser, please
-        click 'Allow'
+        click 'Allow'.
       </p>
       <p>
-        If the map has already appeared, you can click on it to automatically
+        When the map has already appeared, you can click on it to automatically
         locate your current location.
       </p>
+      <div className="flex flex-row gap-2 items-center">
+        <div className="flex flex-row gap-2 items-center">
+          <span>Or you can update your address by clicking on </span>
+          <UpdateAddess />
+        </div>
+      </div>
     </div>
   );
 }

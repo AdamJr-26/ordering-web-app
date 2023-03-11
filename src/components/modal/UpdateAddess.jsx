@@ -52,7 +52,10 @@ function UpdateAddess({ dropDownSetIsOpen, dropDownIsOpen }) {
   async function onSubmit(values) {
     try {
       const res = await axiosAPI().put("api/customer/address", values);
-      console.log("res", res);
+      if (res.data) {
+        profile.mutate();
+        window.location.reload();
+      }
     } catch (error) {
       console.log("errror", error);
     }
@@ -81,11 +84,17 @@ function UpdateAddess({ dropDownSetIsOpen, dropDownIsOpen }) {
           <p className="text-[24px] font-bold text">Update Address</p>
           <div>
             <p className="py-1">Your Current Addres:</p>
-            <p className="font-bold p-2 bg-dim-blue rounded-lg bg-opacity-50 ">{`${
-              address.street || ""
-            }, ${address.barangay}, ${address.municipal_city} ${
-              address.province || ""
-            }`}</p>
+            {address ? (
+              <p className="font-bold p-2 bg-dim-blue rounded-lg bg-opacity-50 ">{`${
+                address?.street || ""
+              } ${address?.barangay || ""} ${address?.municipal_city || ""} ${
+                address?.province || ""
+              }`}</p>
+            ) : (
+              <p className="font-bold p-2 bg-dim-blue rounded-lg bg-opacity-50 ">
+                Not been set
+              </p>
+            )}
           </div>
         </div>
         <Formik

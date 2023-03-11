@@ -1,8 +1,30 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-
+import axiosAPI from "../services/api.axios";
+import { useAuth } from "../hooks/auth";
 function ChoosenStation({ station, setStation }) {
   const address = station?.address;
+  async function handleSubscribe() {
+    if (!station) return;
+    try {
+      const res = await axiosAPI().put("/api/customer/subscribe", {
+        admin: station._id,
+      });
+      if (res.data) {
+        console.log("res.data", res.data);
+        profile.mutate();
+      }
+    } catch (error) {
+      console.log("errr");
+    }
+  }
+  const { profile } = useAuth();
+  console.log(
+    "station._id === profile?.data?.admin",
+    station._id,
+    profile?.data.data.admin
+  );
+
   return (
     <div className="relative h-full flex flex-col items-center justify-center gap-2">
       <div className="h-[80px] w-[80px] rounded-full bg-teal"></div>
@@ -30,9 +52,21 @@ function ChoosenStation({ station, setStation }) {
         </div>
       </div>
       <div>
-        <button className="px-5 py-3 text-white font-medium bg-aqua-marine rounded-full">
-          Subscribe
-        </button>
+        {station._id === profile?.data?.data?.admin ? (
+          <button className="flex flex-row gap-2 items-center px-5 py-3  font-medium bg-dark-grey rounded-full">
+            <span>Subscribed</span>
+            <span className="text-[24px]">
+              <Icon icon="material-symbols:keyboard-arrow-down-rounded" />
+            </span>
+          </button>
+        ) : (
+          <button
+            onClick={handleSubscribe}
+            className="px-5 py-3 text-white font-medium bg-aqua-marine rounded-full"
+          >
+            Subscribe
+          </button>
+        )}
       </div>
       <button
         onClick={() => setStation(null)}
