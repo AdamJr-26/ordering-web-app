@@ -86,6 +86,7 @@ function NearbyWRSMap({ station, setStation }) {
       center={position}
       zoom={14}
       scrollWheelZoom={true}
+      zoomControl={false}
       crs={metric}
     >
       <TileLayer

@@ -35,15 +35,17 @@ function ChoosenStation({ station, setStation }) {
         } ${address.province || ""}`}
       </p>
       <div className="flex flex-row gap-5 sm:gap-10">
-        <div className="flex flex-row gap-1 items-center">
-          <Icon icon="ic:sharp-star-border" />
+        {/* <div className="flex flex-row gap-1 items-center hover:scale-150 cursor-pointer hover:text-orange-500">
+          <p className=" ">
+            <Icon icon="ic:sharp-star-border" />
+          </p>
           <p className="font-medium text-ship-gray-500 text-[14px]">4.5</p>
-        </div>
-        <div className="flex flex-row gap-1 items-center">
+        </div> */}
+        {/* <div className="flex flex-row gap-1 items-center">
           <p className="font-medium text-ship-gray-500 text-[14px]">
             200 Subscribed
           </p>
-        </div>
+        </div> */}
         <div className="flex flex-row gap-1 items-center">
           <Icon icon="material-symbols:location-on" />
           <p className="font-medium text-ship-gray-500 text-[14px]">

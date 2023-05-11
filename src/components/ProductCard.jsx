@@ -5,11 +5,14 @@ import { ToastContainer, toast } from "react-toastify";
 import errorExtractor from "../utils/response.error.extractor";
 function ProductCard({ product }) {
   // add to cart
+
   async function addToCart() {
+    console.log("product", product);
     try {
       const payload = {
         admin: product.admin,
         gallon: product.gallon[0]._id,
+        price: product.price,
       };
       const res = await axiosAPI().post("/api/cart", payload);
       if (res.data.code === 200) {
@@ -65,7 +68,7 @@ function ProductCard({ product }) {
       </div>
       <div>
         <div className="flex flex-col items-center justify-center p-2">
-          <p className="text-white font-bold">Round</p>
+          <p className="text-white font-bold">{product.gallon[0].name}</p>
           <p className="text-white text-[14px]">
             {product.gallon[0].liter} Liter(s)
           </p>
@@ -74,13 +77,13 @@ function ProductCard({ product }) {
         <div className="flex flex-row justify-around">
           <button
             onClick={addToCart}
-            className="hover:bg-opacity-50 bg-aqua-marine p-3 text-[24px] rounded-full text-white"
+            className="hover:bg-opacity-50 w-full flex justify-center mx-2 bg-aqua-marine p-3 text-[16px] rounded-full text-white"
           >
-            <Icon icon="mdi:cart-arrow-down" />
+           Add to cart
           </button>
-          <button className="hover:bg-opacity-50 bg-aqua-marine p-3 text-[24px] rounded-full text-white">
+          {/* <button className="hover:bg-opacity-50 bg-aqua-marine p-3 text-[24px] rounded-full text-white">
             <Icon icon="ic:sharp-shopping-cart-checkout" />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

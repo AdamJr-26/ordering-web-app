@@ -20,6 +20,9 @@ module.exports = {
         800: "#443e4e",
         900: "#3c3744",
       },
+      "orange": {
+        500:"#f59e0b"
+      }
     },
     screens: {
       xsm: "360px",

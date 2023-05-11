@@ -18,9 +18,9 @@ function Navigation() {
       <div className="text-[24px] sm:text-[32px]  hover:text-aqua-marine hover:cursor-pointer">
         <CartModal />
       </div>
-      <div className="text-[24px] sm:text-[32px]  hover:text-aqua-marine hover:cursor-pointer">
+      {/* <div className="text-[24px] sm:text-[32px]  hover:text-aqua-marine hover:cursor-pointer">
         <Icon icon="bxs:purchase-tag" />
-      </div>
+      </div> */}
       <div className="flex  gap-2 justify-center items-center flex-col xsm:flex-row ">
         <div className="sm:h-[32px] sm:w-[32px] h-[24px] w-[24px] rounded-full bg-teal overflow-hidden">
           <img

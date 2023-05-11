@@ -67,7 +67,7 @@ function SearchModal({ address }) {
             <p>You can adjust radius to find more water refilling station.</p>
           </div>
           <div className="py-5 flex flex-col gap-3">
-            {[1, 2].map((item) => (
+            {/* {[1, 2].map((item) => (
               <div
                 key={item}
                 className="flex flex-row gap-3 hover:bg-dark-grey"
@@ -83,7 +83,7 @@ function SearchModal({ address }) {
                   </p>
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </Modal>
